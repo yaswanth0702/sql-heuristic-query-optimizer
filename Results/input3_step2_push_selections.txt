@@ -1,0 +1,7 @@
+└─ π[E.Dno, COUNT(*), MIN(E.Salary), MAX(E.Salary), AVG(E.Salary), SUM(W.Hours), AVG(W.Hours)]
+   └─ σ[AVG(E.Salary) >= 60000]
+      └─ σ[AVG(E.Salary) <= 90000]
+         └─ γ[groups: E.Dno]
+            └─ ⟕[E.Ssn = W.Essn]
+               ├─ REL[EMPLOYEE E]
+               └─ REL[WORKS_ON W]

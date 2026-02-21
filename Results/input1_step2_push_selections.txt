@@ -1,0 +1,10 @@
+└─ π[E.Lname]
+   └─ σ[P.Pnumber=W.Pno]
+      └─ ×
+         ├─ σ[E.Ssn=W.Ssn]
+         │  └─ ×
+         │     ├─ σ[E.Bdate>'1957-12-31']
+         │     │  └─ REL[EMPLOYEE E]
+         │     └─ REL[WORKS_ON W]
+         └─ σ[P.Pname='Aquarius']
+            └─ REL[PROJECT P]
