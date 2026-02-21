@@ -1,0 +1,41 @@
+-- Schema Definitions --
+Employee(
+  Fname, Minit, Lname, Ssn, Bdate, Address, Sex, Salary, Super_ssn, Dno,
+  PRIMARY KEY(Ssn)
+);
+
+Project(
+  Pname, Pnumber, Plocation, Dnum,
+  PRIMARY KEY(Pnumber),
+  UNIQUE(Pname)
+);
+
+Works_On(
+  Essn, Pno, Hours,
+  PRIMARY KEY(Essn, Pno)
+); 
+
+-- SQL Query --
+-- This query analyzes all projects and identifies those that meet several
+-- conditions based on employee assignments. The query groups results by project and returns
+-- the basic project information, sorted alphabetically by project name.
+
+
+SELECT
+  * 
+FROM 
+  Project P 
+  INNER JOIN Works_On W ON P.Pnumber = W.Pno 
+  INNER JOIN Employee E ON E.Ssn = W.Essn
+WHERE 
+  E.Sex = 'M'
+  AND P.Plocation != 'Houston'
+  OR W.Hours > 5
+GROUP BY 
+  P.Pnumber
+HAVING 
+  COUNT(*) >= 3      
+ORDER BY
+  P.Pname ASC;
+
+
